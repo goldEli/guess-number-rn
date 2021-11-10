@@ -64,7 +64,11 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
             Taro.showModal({
               title: "提示",
               content: `添加成功`,
+              success: () => {
+                Taro.navigateBack()
+              }
             });
+            
           }}
         >
           确定

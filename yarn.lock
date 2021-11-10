@@ -3365,9 +3365,9 @@
     "@babel/runtime" "^7.11.2"
     "@tarojs/runtime" "3.3.12"
 
-"@tarojs/cli@^3.2.16":
+"@tarojs/cli@^3.3.12":
   version "3.3.12"
-  resolved "https://registry.npmmirror.com/@tarojs/cli/download/@tarojs/cli-3.3.12.tgz?cache=0&sync_timestamp=1635491461450&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fcli%2Fdownload%2F%40tarojs%2Fcli-3.3.12.tgz#ba6656bfb6f7e7b68abede75c47fdffa9a497a45"
+  resolved "https://registry.npmmirror.com/@tarojs/cli/download/@tarojs/cli-3.3.12.tgz#ba6656bfb6f7e7b68abede75c47fdffa9a497a45"
   integrity sha1-umZWv7b357aKvt51xH/f+ppJekU=
   dependencies:
     "@hapi/joi" "17.1.1"
@@ -3472,7 +3472,7 @@
     react-native-webview "^11.6.4"
     unimodules-permissions-interface "~5.3.0"
 
-"@tarojs/components@3.3.12", "@tarojs/components@^3.2.16":
+"@tarojs/components@3.3.12", "@tarojs/components@^3.3.12":
   version "3.3.12"
   resolved "https://registry.npmmirror.com/@tarojs/components/download/@tarojs/components-3.3.12.tgz?cache=0&sync_timestamp=1635491602727&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fcomponents%2Fdownload%2F%40tarojs%2Fcomponents-3.3.12.tgz#07a4845e19df66350c3b00b0fc43c288d4a55fa3"
   integrity sha1-B6SEXhnfZjUMOwCw/EPCiNSlX6M=
@@ -3512,9 +3512,9 @@
     resolve "1.15.1"
     yauzl "2.10.0"
 
-"@tarojs/mini-runner@^3.2.16":
+"@tarojs/mini-runner@^3.3.12":
   version "3.3.12"
-  resolved "https://registry.npmmirror.com/@tarojs/mini-runner/download/@tarojs/mini-runner-3.3.12.tgz?cache=0&sync_timestamp=1635491513598&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fmini-runner%2Fdownload%2F%40tarojs%2Fmini-runner-3.3.12.tgz#1f7d41e4bb72da1515479912e9e1c631eb99fe9e"
+  resolved "https://registry.npmmirror.com/@tarojs/mini-runner/download/@tarojs/mini-runner-3.3.12.tgz?cache=0&sync_timestamp=1635492199264&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fmini-runner%2Fdownload%2F%40tarojs%2Fmini-runner-3.3.12.tgz#1f7d41e4bb72da1515479912e9e1c631eb99fe9e"
   integrity sha1-H31B5Lty2hUVR5kS6eHGMeuZ/p4=
   dependencies:
     "@babel/core" "^7.11.1"
@@ -3625,9 +3625,9 @@
     "@tarojs/service" "3.3.12"
     "@tarojs/shared" "3.3.12"
 
-"@tarojs/react@^3.2.16":
+"@tarojs/react@^3.3.12":
   version "3.3.12"
-  resolved "https://registry.npmmirror.com/@tarojs/react/download/@tarojs/react-3.3.12.tgz#19ba29e2668fd02ed288c82faf4aa57c59acc09f"
+  resolved "https://registry.npmmirror.com/@tarojs/react/download/@tarojs/react-3.3.12.tgz?cache=0&sync_timestamp=1635492200795&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Freact%2Fdownload%2F%40tarojs%2Freact-3.3.12.tgz#19ba29e2668fd02ed288c82faf4aa57c59acc09f"
   integrity sha1-Gbop4maP0C7SiMgvr0qlfFmswJ8=
   dependencies:
     "@tarojs/runtime" "3.3.12"
@@ -3635,7 +3635,7 @@
     react-reconciler "0.26.1"
     scheduler "^0.20.1"
 
-"@tarojs/rn-runner@^3.2.16":
+"@tarojs/rn-runner@^3.3.12":
   version "3.3.12"
   resolved "https://registry.npmmirror.com/@tarojs/rn-runner/download/@tarojs/rn-runner-3.3.12.tgz#3ea0f27ec89385cb3ec1b5e1208cfb6073e0eba9"
   integrity sha1-PqDyfsiThcs+wbXhIIz7YHPg66k=
@@ -3736,7 +3736,7 @@
     "@tarojs/components-rn" "3.3.12"
     "@tarojs/router-rn" "3.3.12"
 
-"@tarojs/runtime@3.3.12", "@tarojs/runtime@^3.2.16":
+"@tarojs/runtime@3.3.12", "@tarojs/runtime@^3.3.12":
   version "3.3.12"
   resolved "https://registry.npmmirror.com/@tarojs/runtime/download/@tarojs/runtime-3.3.12.tgz?cache=0&sync_timestamp=1635491603248&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fruntime%2Fdownload%2F%40tarojs%2Fruntime-3.3.12.tgz#5729994e097ce71e1469ac0da4d37328ee21332c"
   integrity sha1-VymZTgl85x4UaawNpNNzKO4hMyw=
@@ -3789,9 +3789,9 @@
     acorn-walk "^8.0.0"
     loader-utils "^1.2.3"
 
-"@tarojs/taro-rn@^3.2.16":
+"@tarojs/taro-rn@^3.3.12":
   version "3.3.12"
-  resolved "https://registry.npmmirror.com/@tarojs/taro-rn/download/@tarojs/taro-rn-3.3.12.tgz?cache=0&sync_timestamp=1635751586514&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Ftaro-rn%2Fdownload%2F%40tarojs%2Ftaro-rn-3.3.12.tgz#6ebdf75eb1d9ffe2623e60f14dc05df107df5001"
+  resolved "https://registry.npmmirror.com/@tarojs/taro-rn/download/@tarojs/taro-rn-3.3.12.tgz#6ebdf75eb1d9ffe2623e60f14dc05df107df5001"
   integrity sha1-br33XrHZ/+JiPmDxTcBd8QffUAE=
   dependencies:
     "@react-native-async-storage/async-storage" "^1.13.2"
@@ -3823,7 +3823,7 @@
     react-native-syan-image-picker "0.4.10"
     react-native-unimodules "^0.14.9"
 
-"@tarojs/taro@3.3.12", "@tarojs/taro@^3.2.16":
+"@tarojs/taro@3.3.12", "@tarojs/taro@^3.3.12":
   version "3.3.12"
   resolved "https://registry.npmmirror.com/@tarojs/taro/download/@tarojs/taro-3.3.12.tgz?cache=0&sync_timestamp=1635491599046&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Ftaro%2Fdownload%2F%40tarojs%2Ftaro-3.3.12.tgz#e562036a6d193077eabf4bfba122ba5e3680d13b"
   integrity sha1-5WIDam0ZMHfqv0v7oSK6XjaA0Ts=
@@ -3880,9 +3880,9 @@
     prettier "^1.14.2"
     typescript "^3.2.2"
 
-"@tarojs/webpack-runner@^3.2.16":
+"@tarojs/webpack-runner@^3.3.12":
   version "3.3.12"
-  resolved "https://registry.npmmirror.com/@tarojs/webpack-runner/download/@tarojs/webpack-runner-3.3.12.tgz?cache=0&sync_timestamp=1635491515115&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fwebpack-runner%2Fdownload%2F%40tarojs%2Fwebpack-runner-3.3.12.tgz#0a65eb2d4ca626352b7dca7fd589952a11a49129"
+  resolved "https://registry.npmmirror.com/@tarojs/webpack-runner/download/@tarojs/webpack-runner-3.3.12.tgz?cache=0&sync_timestamp=1635492200048&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40tarojs%2Fwebpack-runner%2Fdownload%2F%40tarojs%2Fwebpack-runner-3.3.12.tgz#0a65eb2d4ca626352b7dca7fd589952a11a49129"
   integrity sha1-CmXrLUymJjUrfcp/1YmVKhGkkSk=
   dependencies:
     "@babel/core" "^7.11.1"
@@ -5534,7 +5534,7 @@ babel-preset-fbjs@^3.4.0:
     "@babel/plugin-transform-template-literals" "^7.0.0"
     babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
 
-babel-preset-taro@^3.2.16:
+babel-preset-taro@^3.3.12:
   version "3.3.12"
   resolved "https://registry.npmmirror.com/babel-preset-taro/download/babel-preset-taro-3.3.12.tgz#c8478a17717152f0637b44f7be4cdb2443c64157"
   integrity sha1-yEeKF3FxUvBje0T3vkzbJEPGQVc=
@@ -8310,7 +8310,7 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-taro@3.3.12, eslint-config-taro@^3.2.16:
+eslint-config-taro@3.3.12, eslint-config-taro@^3.3.12:
   version "3.3.12"
   resolved "https://registry.npmmirror.com/eslint-config-taro/download/eslint-config-taro-3.3.12.tgz?cache=0&sync_timestamp=1635491600360&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-config-taro%2Fdownload%2Feslint-config-taro-3.3.12.tgz#1ac52759bd60c205a44fe721971fe31d5da5b134"
   integrity sha1-GsUnWb1gwgWkT+chlx/jHV2lsTQ=

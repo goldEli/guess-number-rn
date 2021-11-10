@@ -28,14 +28,11 @@ const Index = () => {
     .map(([_, data]) => {
       return data;
     }) as IListItem[];
-  
 
-  const lotteryList = myNumberList
-    .filter(item => item.type === "lottery")
-  const doubleColorList = myNumberList
-    .filter(item => item.type === "doubleColor")
-
-  
+  const lotteryList = myNumberList.filter(item => item.type === "lottery");
+  const doubleColorList = myNumberList.filter(
+    item => item.type === "doubleColor"
+  );
 
   const getBoxEle = function(data: IListItem[]) {
     const obj = new Map<string, IListItem[][]>();
@@ -46,29 +43,30 @@ const Index = () => {
         obj[item.num] = [item];
       }
     }
-    console.log(data)
-    return Object.entries(obj).sort((a,b) => parseInt(b[0]) - parseInt(a[0])).map(([key, item]: [string, IListItem[]]) => {
-      const num = item[0]?.num;
-      const type = item[0]?.type;
-      const data =
-        type === "lottery"
-          ? officialLotteryList.data
-          : officialDoubleColorList.data;
-      const current = data?.find(i => i.lotteryDrawNum === num);
-      
-      return (
-        <View>
-          <View id={key}>
-            <View className="index-ball-box-title">
-              <View>{key}</View>
-              <View>{current?.lotteryDrawTime}</View>
-              <View>{current?.lotteryDrawResult}</View>
+    return Object.entries(obj)
+      .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+      .map(([key, item]: [string, IListItem[]]) => {
+        const num = item[0]?.num;
+        const type = item[0]?.type;
+        const data =
+          type === "lottery"
+            ? officialLotteryList.data
+            : officialDoubleColorList.data;
+        const current = data?.find(i => i.lotteryDrawNum === num);
+
+        return (
+          <View>
+            <View id={key}>
+              <View className="index-ball-box-title">
+                <View>{key}</View>
+                <View>{current?.lotteryDrawTime}</View>
+                <View>{current?.lotteryDrawResult}</View>
+              </View>
+              {getListEle(item, current?.lotteryDrawResult)}
             </View>
-            {getListEle(item, current?.lotteryDrawResult)}
           </View>
-        </View>
-      );
-    });
+        );
+      });
   };
 
   const getListEle = function(data: IListItem[], lotteryDrawResult?: string) {
@@ -83,10 +81,8 @@ const Index = () => {
                 content: `是否要删除，第${item.num}, ${item.list.join(" ")}`,
                 success: function(res) {
                   if (res.confirm) {
-                    console.log("用户点击确定");
                     remove(item.id);
                   } else if (res.cancel) {
-                    console.log("用户点击取消");
                   }
                 }
               });
@@ -121,6 +117,13 @@ const Index = () => {
         <View className="index-btn-box">
           <Button
             onClick={() => {
+              remove("123123");
+            }}
+          >
+            refresh
+          </Button>
+          <Button
+            onClick={() => {
               Taro.navigateTo({
                 url: "/pages/select-number/index"
               });
@@ -138,46 +141,6 @@ const Index = () => {
           <View className="index-list-box-title">Double Color</View>
           <View>{getBoxEle(doubleColorList)}</View>
         </View>
-
-        {/* {myNumberList?.map(item => {
-          const lotteryDrawNum = item[0]?.split("-")[1];
-          const cur = list?.find(
-            item => item.lotteryDrawNum === lotteryDrawNum
-          );
-
-          const lotteryDrawTime = cur?.lotteryDrawTime;
-          const lotteryDrawResult = cur?.lotteryDrawResult;
-          const lotteryDrawResultArr = lotteryDrawResult
-            ?.split(" ")
-            .filter(item => !!item)
-            ?.map(item => parseInt(item));
-          return (
-            <AtCard
-              extra={lotteryDrawTime}
-              title={lotteryDrawNum}
-              note={lotteryDrawResult}
-            >
-              {item[1]?.map(str => {
-                const nums = str.split("-")?.map(item => parseInt(item));
-                return (
-                  <View className="ball-box">
-                    {nums?.map((num, index) => {
-                      const classes = classnames("ball", {
-                        "ball--active": checkWinNum(
-                          lotteryDrawResultArr,
-                          nums,
-                          index
-                        )
-                      });
-                      return <View className={classes}>{num}</View>;
-                    })}
-                  </View>
-                );
-              })}
-            </AtCard>
-          );
-        })} */}
-        {/* </ScrollView> */}
       </SafeAreaView>
     </ScrollView>
   );
