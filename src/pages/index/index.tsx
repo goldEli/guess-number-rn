@@ -32,10 +32,8 @@ const Index = () => {
 
   const lotteryList = myNumberList
     .filter(item => item.type === "lottery")
-    .sort((a, b) => parseInt(b?.num) - parseInt(a?.num));
   const doubleColorList = myNumberList
     .filter(item => item.type === "doubleColor")
-    .sort((a, b) => parseInt(b?.num) - parseInt(a?.num));
 
   
 
@@ -49,7 +47,7 @@ const Index = () => {
       }
     }
     console.log(data)
-    return Object.entries(obj).map(([key, item]: [string, IListItem[]]) => {
+    return Object.entries(obj).sort((a,b) => parseInt(b[0]) - parseInt(a[0])).map(([key, item]: [string, IListItem[]]) => {
       const num = item[0]?.num;
       const type = item[0]?.type;
       const data =
