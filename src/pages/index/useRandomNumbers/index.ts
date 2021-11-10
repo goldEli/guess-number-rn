@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getDoubleColorRandomNumbers, getRandomNumbers } from "../utils";
 
 const useRandomNumbers = (type: "lottery" | "doubleColor") => {
-	const [randomNumbers, setRandomNumbers] = useState([]);
+	const [randomNumbers, setRandomNumbers] = useState<string[]>([]);
 
 	useEffect(() => {
 		if (type === "lottery") {

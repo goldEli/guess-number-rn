@@ -1,33 +1,40 @@
-.wrapper {
+.index {
   padding: 20px;
-  .btn-box {
+  box-sizing: border-box;
+  height: 100%;
+  &-list-box {
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
   }
-  .ball-box {
+  &-list-box-title {
+    font-weight: bold;
+    padding: 20px;
+    font-size: 30px;
+  }
+  &-ball-box {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 8px;
   }
-  .ball {
+  &-ball-box-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px;
+  }
+  &-ball {
     width: 60px;
     height: 60px;
     border: 1px solid gray;
     margin-right: 8px;
-    border-radius: 50%;
+    // border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .ball--active {
-    
+  &-ball--active {
     background-color: red;
     color: #fff;
-    
   }
 }
-

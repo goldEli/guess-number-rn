@@ -7,17 +7,29 @@
 
 import React, { Component } from "react";
 import Taro, { getCurrentInstance } from "@tarojs/taro";
-import { View, Text, Input, Video } from "@tarojs/components";
+import { View, Text, Button } from "@tarojs/components";
 import "./index.scss";
 import { SafeAreaView } from "@components";
 
-import Index from "../index";
+// import Index from "../index";
 
 export default class HouseLoanCompute extends Component<any, any> {
   render() {
     return (
       <SafeAreaView className="calculator">
-        <Index />
+        <Button
+          onClick={() => {
+            Taro.navigateTo({
+              url: "/pages/calculator/select-number/index"
+            });
+          }}
+          type="primary"
+        >
+          calculator
+        </Button>
+
+        {/* <Index /> */}
+        {/* <View>123</View> */}
       </SafeAreaView>
     );
   }

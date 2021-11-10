@@ -18,6 +18,8 @@ const config = {
   },
   alias: {
     "@src": path.resolve(__dirname, "..", "src"),
+    "@type": path.resolve(__dirname, "..", "src/type"),
+    "@api": path.resolve(__dirname, "..", "src/api"),
     "@components": path.resolve(__dirname, "..", "src/components"),
     "@scss": path.resolve(__dirname, "..", "src/scss"),
     "@utils": path.resolve(__dirname, "..", "src/utils"),

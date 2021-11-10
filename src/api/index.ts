@@ -11,25 +11,10 @@ const APIS = {
 
 const getLotteryList = async () => {
   return new Promise<ILottery[]>((resolve, reject) => {
-    resolve([
-      {
-        lotteryDrawNum: "21128",
-        lotteryDrawResult: "14 17 18 23 27 05 08",
-        lotteryDrawTime: "2021-11-08",
-				type: "lottery"
-      },
-      {
-        lotteryDrawNum: "21127",
-        lotteryDrawResult: "1 2 3 4 5 7 8",
-        lotteryDrawTime: "2021-11-05",
-				type: "lottery"
-      }
-    ]);
-    return;
     Taro.request({
       url: APIS.lotteryList,
       success: function(res) {
-        console.log(res.data);
+        // console.log(res.data);
         const data = res.data as IResponse<{
           list: ILottery[];
         }>;
@@ -48,16 +33,18 @@ const getLotteryList = async () => {
   });
 };
 
-const getDoubleColorList = async () => {
+const getDoubleColorList = () => {
+  console.log("getDoubleColorList");
   return new Promise<ILottery[]>((resolve, reject) => {
-
+    console.log("getDoubleColorList");
     Taro.request({
       url: APIS.doubleColorList,
       success: function(res) {
-        console.log(res.data);
+        console.log(123, res.data);
         const data = res.data as IResponse<{
           result: IDoubleColor[];
         }>;
+        console.log(111, data)
         if (data.success) {
           const d = data?.value?.result?.map(item => {
             return {
@@ -66,8 +53,8 @@ const getDoubleColorList = async () => {
               lotteryDrawTime: item.date,
               type: "doubleColor"
             };
-          });
-          console.log(d);
+          }) as ILottery[];
+          
           resolve(d);
         }
       }
@@ -90,6 +77,7 @@ export const useOfficialDoubleColorList = () => {
   const res = useQuery([APIS.doubleColorList], getDoubleColorList);
   const latestLotteryDrawNum = res.data?.[0]?.lotteryDrawNum || "";
   const nextLotteryDrawNum = parseInt(latestLotteryDrawNum) + 1 + "";
+  console.log("useOfficialDoubleColorList", res)
   return {
     ...res,
     latestLotteryDrawNum,
