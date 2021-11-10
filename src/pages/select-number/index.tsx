@@ -8,14 +8,15 @@ import { useOfficialDoubleColorList, useOfficialLotteryList } from "@src/api";
 import useRandomNumbers from "../index/useRandomNumbers";
 import { TTicketType } from "@src/type";
 import { getRandomId } from "@src/utils";
-import Taro from "@tarojs/taro"
+import Taro from "@tarojs/taro";
+import "./index.scss"
 
 interface ISelectNumberProps {}
 const PREFIX = "key";
 const range = ["lottery", "doubleColor"];
 
 const SelectNumber: React.FC<ISelectNumberProps> = props => {
-  const [storageInfo, { set, get, remove }] = useStorage();
+  const [_, { set }] = useStorage();
   const officialLotteryList = useOfficialLotteryList();
   const officialDoubleColorList = useOfficialDoubleColorList();
 
@@ -27,22 +28,25 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
       ? officialDoubleColorList.nextLotteryDrawNum
       : officialLotteryList.nextLotteryDrawNum;
   return (
-    <SafeAreaView>
-      <View>{nextLotteryDrawNum}</View>
-      <Picker
-        mode="selector"
-        range={range}
-        onChange={e => {
-          const index = e.detail.value;
-          setTicketType(range[index]);
-        }}
-      >
-        <View className="picker">{ticketType}</View>
-      </Picker>
-      <View>
+    <SafeAreaView className="select-number">
+      <View className="select-number-header">
+        <View className="select-number-header-label">{nextLotteryDrawNum}</View>
+        <Picker
+          mode="selector"
+          range={range}
+          onChange={e => {
+            const index = e.detail.value;
+            setTicketType(range[index]);
+          }}
+        >
+          <View style={{ fontSize: 20 }}>{ticketType}</View>
+        </Picker>
+      </View>
+
+      <View className="select-number-input-box">
         <Input
           name="123"
-          style={{fontSize: 36}}
+          style={{ fontSize: 36 }}
           onInput={e => {
             // console.log(e);
             const value = (e.detail.value + "")?.split(" ");
@@ -51,8 +55,9 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
           value={randomNumbers.join(" ")}
         />
       </View>
-      <View>
+      <View className="select-number-button-box">
         <Button
+          style={{width: 300}}
           onClick={() => {
             const key = `${PREFIX}-${getRandomId()}`;
             set(key, {
@@ -65,16 +70,14 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
               title: "提示",
               content: `添加成功`,
               success: () => {
-                Taro.navigateBack()
+                Taro.navigateBack();
               }
             });
-            
           }}
         >
           确定
         </Button>
       </View>
-      
     </SafeAreaView>
   );
 };

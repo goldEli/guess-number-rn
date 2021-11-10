@@ -1,0 +1,32 @@
+.select-number{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding: 20px;
+	&-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		padding-bottom: 40px;
+	}
+	&-header-label {
+		padding-right: 20px;
+		opacity: 0.6;
+	}
+	&-input-box {
+		height: 60%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&-button-box {
+		position:absolute;
+		// margin: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		bottom: 40px;
+		width: 100%;
+	}
+}
