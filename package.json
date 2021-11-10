@@ -1,8 +1,8 @@
 {
-  "name": "mortgage_calculator",
+  "name": "guessNumber",
   "version": "1.0.0",
   "private": true,
-  "description": "Taro 3 - Mortgage Calculator",
+  "description": "guess number",
   "templateInfo": {
     "name": "default",
     "typescript": true,
@@ -43,10 +43,7 @@
     ]
   },
   "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
+    
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
@@ -62,6 +59,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "^0.66.1",
+    "react-query": "^3.32.1",
+    "taro-hooks": "^1.4.8",
     "taro-ui": "^3.0.0-alpha.3"
   },
   "devDependencies": {

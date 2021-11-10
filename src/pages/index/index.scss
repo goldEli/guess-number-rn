@@ -1,0 +1,33 @@
+.wrapper {
+  padding: 20px;
+  .btn-box {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  .ball-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+  }
+  .ball {
+    width: 60px;
+    height: 60px;
+    border: 1px solid gray;
+    margin-right: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ball--active {
+    
+    background-color: red;
+    color: #fff;
+    
+  }
+}
+

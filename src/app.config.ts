@@ -1,9 +1,5 @@
 export default {
-  pages: [
-    "pages/calculator/index",
-    "pages/calculator/monthly-payments/index",
-    "pages/calculator/history/index"
-  ],
+  pages: ["pages/index/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
