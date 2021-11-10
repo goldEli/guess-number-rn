@@ -24,8 +24,8 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
 
   const nextLotteryDrawNum =
     ticketType === "doubleColor"
-      ? officialDoubleColorList.latestLotteryDrawNum
-      : officialLotteryList.latestLotteryDrawNum;
+      ? officialDoubleColorList.nextLotteryDrawNum
+      : officialLotteryList.nextLotteryDrawNum;
   return (
     <SafeAreaView>
       <View>{nextLotteryDrawNum}</View>
@@ -42,6 +42,7 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
       <View>
         <Input
           name="123"
+          style={{fontSize: 36}}
           onInput={e => {
             // console.log(e);
             const value = (e.detail.value + "")?.split(" ");
@@ -69,32 +70,7 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
           确定
         </Button>
       </View>
-      {/* </AtModalContent> */}
-      {/* <AtModalAction>
-          {" "}
-          <Button onClick={onClose}>取消</Button>{" "}
-          <Button
-            onClick={() => {
-              const key = `${PREFIX}-${getRandomId()}`;
-              set(key, {
-                list: randomNumbers,
-                num: nextLotteryDrawNum,
-								type: ticketType
-              });
-              // get(key)
-              //   .then(res => {
-              //     set(key, [...res, ...data]);
-              //   })
-              //   .catch(() => {
-              //     set(key, [...data]);
-              //   });
-              onClose();
-            }}
-          >
-            确定
-          </Button>{" "}
-        </AtModalAction> */}
-      {/* </AtModal> */}
+      
     </SafeAreaView>
   );
 };

@@ -28,6 +28,7 @@ const Index = () => {
     .map(([_, data]) => {
       return data;
     }) as IListItem[];
+  
 
   const lotteryList = myNumberList
     .filter(item => item.type === "lottery")
@@ -35,6 +36,7 @@ const Index = () => {
   const doubleColorList = myNumberList
     .filter(item => item.type === "doubleColor")
     .sort((a, b) => parseInt(b?.num) - parseInt(a?.num));
+
   
 
   const getBoxEle = function(data: IListItem[]) {
@@ -43,9 +45,10 @@ const Index = () => {
       if (obj[item.num]) {
         obj[item.num].push(item);
       } else {
-        obj[item.num] = [];
+        obj[item.num] = [item];
       }
     }
+    console.log(data)
     return Object.entries(obj).map(([key, item]: [string, IListItem[]]) => {
       const num = item[0]?.num;
       const type = item[0]?.type;
@@ -54,7 +57,7 @@ const Index = () => {
           ? officialLotteryList.data
           : officialDoubleColorList.data;
       const current = data?.find(i => i.lotteryDrawNum === num);
-      // console.log(123, data)
+      
       return (
         <View>
           <View id={key}>

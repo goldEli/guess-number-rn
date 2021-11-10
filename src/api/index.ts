@@ -39,6 +39,7 @@ const getDoubleColorList = () => {
     console.log("getDoubleColorList");
     Taro.request({
       url: APIS.doubleColorList,
+      mode: 'no-cors',
       success: function(res) {
         console.log(123, res.data);
         const data = res.data as IResponse<{

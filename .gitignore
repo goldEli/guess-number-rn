@@ -9,6 +9,7 @@ node_modules/
 next-env.d.ts
 rn_bundle/
 .vscode/
+android/
 
 # Built application files
 *.apk
