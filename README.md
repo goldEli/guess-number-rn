@@ -1,10 +1,7 @@
-# Mortgage-Calculator
+# guess number
 
-Taro 3 - MortgageCalculator 
-
-> 从左到右：React Native、Weapp、H5
-
-![](./example.png)
+> 基于[Taro-Mortgage-Calculator
+](https://github.com/wuba/Taro-Mortgage-Calculator)模板开发
 
 基于Taro 3开发的多端（React Native、Weapp、H5）实例
 
@@ -37,14 +34,6 @@ Taro 3 - MortgageCalculator
 
 此项目旨在为Taro 3开发多端应用提供一个可参考的案例，封装一些支持多端的组件，提供一份开发多端应用的思路、技巧，能够快速上手开发
 
-
-## 在线预览
-
-
-| <center>React Native</center>| <center>小程序</center> | <center>H5</center> |
-|--------------|-------|----|
-| 安卓：[taroDemo.apk](https://github.com/wuba/Taro-Mortgage-Calculator/raw/e0c432bdc6096a08d9020542e7ce401861026bfa/app-arm64-v8a-release.apk.1.zip) <br> IOS：[taroDemo.app](https://github.com/wuba/Taro-Mortgage-Calculator/raw/a67459bc6667b0478978621482d33103d04e7538/taroDemo.app.zip)(IOS模拟器包) | ![](./mini-qrcode.jpg) | ![](./h5-qrcode.png)<br>https://wuba.github.io/Taro-Mortgage-Calculator |
-
 ## 使用 Taro Playground 预览
 
 0. 下载安装 [Taro Playground](https://github.com/wuba/taro-playground#app-download)。
@@ -73,6 +62,34 @@ Taro 3 - MortgageCalculator
   yarn dev:h5
 ```
 
-## License
+## apk打包
 
-MIT
+下载 `taro-native-shell` 壳工程
+
+```shell
+git clone git@github.com:NervJS/taro-native-shell.git
+```
+
+`guessNumber` 项目打包
+
+```
+yarn build:rn
+```
+
+打包后将 `android` 文件夹内所有文件拷贝到`taro-native-shell/android/app/src/main/assets`
+
+进入`taro-native-shell`
+
+安装依赖
+
+```shell
+yarn
+```
+
+
+生成 APK （详情参考[https://reactnative.cn/docs/signed-apk-android]）
+
+```shell
+cd android
+./gradlew assembleRelease
+```
