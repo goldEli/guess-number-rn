@@ -1,7 +1,7 @@
 
 
 export default {
-  pages: ["/pages/index/index", "/pages/select-number/index"],
+  pages: ["/pages/index/index", "/pages/select-number/index", , "/pages/log/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",

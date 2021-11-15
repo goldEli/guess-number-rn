@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { IDoubleColor, ILottery, IResponse } from "../pages/index/type";
 import Taro from "@tarojs/taro";
+import { logger } from "@src/utils/log";
 
 const APIS = {
   lotteryList:
@@ -14,10 +15,20 @@ const getLotteryList = async () => {
     Taro.request({
       url: APIS.lotteryList,
       success: function(res) {
-        console.log("lottery list", res)
-        const data = res.data as IResponse<{
-          list: ILottery[];
-        }>;
+        const data = res.data as {
+          dataFrom: string;
+          emptyFlag: boolean;
+          errorCode: string;
+          errorMessage: string;
+          success: true;
+          value: {
+            list: ILottery[];
+          };
+        };
+        logger.add("lottery list errMsg", res?.errMsg);
+        logger.add("lottery list errorMessage", data?.errorMessage);
+        logger.add("lottery list success", data?.success + "");
+        logger.add("lottery list data length", data?.value?.list.length + "");
         if (data.success) {
           resolve(
             data.value.list.map(item => {
@@ -38,10 +49,16 @@ const getDoubleColorList = () => {
     Taro.request({
       url: APIS.doubleColorList,
       success: function(res) {
-        console.log("double color list", res)
         const data = res.data as {
+          Tflag: number;
+          countNum: number;
+          message: string;
+          pageCount: number;
           result: IDoubleColor[];
         };
+        logger.add("DoubleColor errMsg", res?.errMsg);
+        logger.add("DoubleColor message", data?.message);
+        logger.add("DoubleColor list length", data?.result?.length + "");
 
         const d = data?.result?.map(item => {
           return {
@@ -62,7 +79,7 @@ export const useOfficialLotteryList = () => {
   const res = useQuery("getLotteryList", getLotteryList);
   const latestLotteryDrawNum = res.data?.[0]?.lotteryDrawNum || "";
   const nextLotteryDrawNum = parseInt(latestLotteryDrawNum) + 1 + "";
-  
+
   return {
     ...res,
     latestLotteryDrawNum,
@@ -74,7 +91,7 @@ export const useOfficialDoubleColorList = () => {
   const res = useQuery("getDoubleColorList", getDoubleColorList);
   const latestLotteryDrawNum = res.data?.[0]?.lotteryDrawNum || "";
   const nextLotteryDrawNum = parseInt(latestLotteryDrawNum) + 1 + "";
-  
+
   return {
     ...res,
     latestLotteryDrawNum,

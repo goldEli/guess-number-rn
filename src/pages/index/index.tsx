@@ -104,7 +104,11 @@ const Index = () => {
                   idx
                 )
               });
-              return <View key={idx} className={classes}>{i}</View>;
+              return (
+                <View key={idx} className={classes}>
+                  {i}
+                </View>
+              );
             })}
           </View>
         </View>
@@ -131,6 +135,16 @@ const Index = () => {
             type="primary"
           >
             select
+          </Button>
+          <Button
+            type="warn"
+            onClick={() => {
+              Taro.navigateTo({
+                url: "/pages/log/index"
+              });
+            }}
+          >
+            log
           </Button>
         </View>
 
