@@ -93,3 +93,13 @@ yarn
 cd android
 ./gradlew assembleRelease
 ```
+
+# note
+
+### release 之后http无法发起请求
+
+> https://blog.csdn.net/z372574152/article/details/105100524
+
+```
+android:usesCleartextTraffic="true"
+```
