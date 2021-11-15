@@ -72,6 +72,8 @@ const getDoubleColorList = () => {
         resolve(d);
       }
     });
+  }).catch(error => {
+    logger.add("getDoubleColorList catch error", "error");
   });
 };
 
@@ -88,6 +90,7 @@ export const useOfficialLotteryList = () => {
 };
 
 export const useOfficialDoubleColorList = () => {
+  logger.add("useOfficialDoubleColorList", "enter");
   const res = useQuery("getDoubleColorList", getDoubleColorList);
   const latestLotteryDrawNum = res.data?.[0]?.lotteryDrawNum || "";
   const nextLotteryDrawNum = parseInt(latestLotteryDrawNum) + 1 + "";
