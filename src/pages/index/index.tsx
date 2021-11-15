@@ -56,7 +56,7 @@ const Index = () => {
 
         return (
           <View>
-            <View id={key}>
+            <View key={key}>
               <View className="index-ball-box-title">
                 <View>{key}</View>
                 <View>{current?.lotteryDrawTime}</View>
@@ -89,7 +89,7 @@ const Index = () => {
             }}
           >
             {/* <View>{item.list.join(" ")}</View> */}
-            {item.list.map((i, idx) => {
+            {item?.list?.map((i, idx) => {
               const type = item.type;
               const lotteryDrawResultArr = lotteryDrawResult
                 ?.split(" ")
@@ -104,7 +104,7 @@ const Index = () => {
                   idx
                 )
               });
-              return <View className={classes}>{i}</View>;
+              return <View key={idx} className={classes}>{i}</View>;
             })}
           </View>
         </View>

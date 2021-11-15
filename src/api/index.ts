@@ -14,6 +14,7 @@ const getLotteryList = async () => {
     Taro.request({
       url: APIS.lotteryList,
       success: function(res) {
+        console.log("lottery list", res)
         const data = res.data as IResponse<{
           list: ILottery[];
         }>;
@@ -37,6 +38,7 @@ const getDoubleColorList = () => {
     Taro.request({
       url: APIS.doubleColorList,
       success: function(res) {
+        console.log("double color list", res)
         const data = res.data as {
           result: IDoubleColor[];
         };
