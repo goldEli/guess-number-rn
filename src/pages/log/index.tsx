@@ -10,7 +10,7 @@ const Log: React.FC<ILogProps> = (props) => {
 	return <View className="log-list">
 		{
 			data?.map(([key, value], idx) => {
-				return <View className="log-list-item">
+				return <View key={idx} className="log-list-item">
 					<View className="log-list-label">{`${key}: `}</View>
 					<View className="log-list-value">{value}</View>
 				</View>
