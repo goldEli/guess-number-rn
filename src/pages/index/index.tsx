@@ -1,27 +1,28 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import { View, Button, ScrollView } from "@tarojs/components";
 import { useStorage } from "taro-hooks";
 
 import Taro from "@tarojs/taro";
 import "./index.scss";
 
-import { checkWinNum, classnames, checkDoubleColorWinNum } from "@src/utils";
 import { SafeAreaView } from "@components";
 import { TTicketType } from "@src/type";
-import { useOfficialDoubleColorList, useOfficialLotteryList } from "@src/api";
+import LotteryList from "./LotteryList";
+import { removeAction } from "taro-hooks/dist/useStorage";
 
 const PREFIX = "key";
-interface IListItem {
+export interface IListItem {
   id: string;
   list: number[];
   num: string;
   type: TTicketType;
 }
-
+export const IndexContext = createContext<{
+  remove?: removeAction;
+}>({});
 const Index = () => {
   const [storageInfo, { remove }] = useStorage();
-  const officialLotteryList = useOfficialLotteryList();
-  const officialDoubleColorList = useOfficialDoubleColorList();
+
   const myNumberList = Object.entries(storageInfo.storage)
     .filter(([key, value]) => key.startsWith(PREFIX))
     .map(([_, data]) => {
@@ -32,133 +33,55 @@ const Index = () => {
   const doubleColorList = myNumberList.filter(
     item => item.type === "doubleColor"
   );
-  const info = Taro.getSystemInfoSync();
 
-  const getBoxEle = function(data: IListItem[]) {
-    const obj = new Map<string, IListItem[][]>();
-    for (let item of data) {
-      if (obj[item.num]) {
-        obj[item.num].push(item);
-      } else {
-        obj[item.num] = [item];
-      }
-    }
-    return Object.entries(obj)
-      .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-      .map(([key, item]: [string, IListItem[]]) => {
-        const num = item[0]?.num;
-        const type = item[0]?.type;
-        const data =
-          type === "lottery"
-            ? officialLotteryList.data
-            : officialDoubleColorList.data;
-        const current = data?.find(i => i.lotteryDrawNum === num);
+  const BtnBox = (
+    <View className="index-btn-box">
+      <Button
+        className="index-btn-box-item"
+        onClick={() => {
+          remove("123123");
+        }}
+      >
+        refresh
+      </Button>
+      <Button
+        className="index-btn-box-item"
+        onClick={() => {
+          Taro.navigateTo({
+            url: "/pages/select-number/index"
+          });
+        }}
+        type="primary"
+      >
+        select
+      </Button>
+      <Button
+        className="index-btn-box-item"
+        type="warn"
+        onClick={() => {
+          Taro.navigateTo({
+            url: "/pages/log/index"
+          });
+        }}
+      >
+        log
+      </Button>
+    </View>
+  );
 
-        return (
-          <View key={key}>
-            <View>
-              <View className="index-ball-box-title">
-                <View>{key}</View>
-                <View>{current?.lotteryDrawTime}</View>
-                <View>{current?.lotteryDrawResult}</View>
-              </View>
-              {getListEle(item, current?.lotteryDrawResult)}
-            </View>
-          </View>
-        );
-      });
-  };
-
-  const getListEle = function(data: IListItem[], lotteryDrawResult?: string) {
-    return data?.map(item => {
-      return (
-        <View key={item.id}>
-          <View
-            className="index-ball-box"
-            onClick={() => {
-              Taro.showModal({
-                title: "提示",
-                content: `是否要删除，第${item.num}, ${item.list.join(" ")}`,
-                success: function(res) {
-                  if (res.confirm) {
-                    remove(item.id);
-                  } else if (res.cancel) {
-                  }
-                }
-              });
-            }}
-          >
-            {/* <View>{item.list.join(" ")}</View> */}
-            {item?.list?.map((i, idx) => {
-              const type = item.type;
-              const lotteryDrawResultArr = lotteryDrawResult
-                ?.split(" ")
-                .filter(item => !!item)
-                ?.map(item => parseInt(item));
-              const check =
-                type === "lottery" ? checkWinNum : checkDoubleColorWinNum;
-              const classes = classnames("index-ball", {
-                "index-ball--active": check(
-                  lotteryDrawResultArr || [],
-                  item.list,
-                  idx
-                )
-              });
-              return (
-                <View key={idx} className={classes}>
-                  {i}
-                </View>
-              );
-            })}
-          </View>
-        </View>
-      );
-    });
-  };
   return (
     <SafeAreaView className="index">
-      <ScrollView scrollY enableBackToTop className="index-scroll-content">
-        <View className="index-btn-box">
-          <Button
-            className="index-btn-box-item"
-            onClick={() => {
-              remove("123123");
-            }}
-          >
-            refresh
-          </Button>
-          <Button
-            className="index-btn-box-item"
-            onClick={() => {
-              Taro.navigateTo({
-                url: "/pages/select-number/index"
-              });
-            }}
-            type="primary"
-          >
-            select
-          </Button>
-          <Button
-            className="index-btn-box-item"
-            type="warn"
-            onClick={() => {
-              Taro.navigateTo({
-                url: "/pages/log/index"
-              });
-            }}
-          >
-            log
-          </Button>
-        </View>
-
-        {/* <ScrollView> */}
-        <View className="index-list-box">
-          <View className="index-list-box-title">Lottery</View>
-          <View>{getBoxEle(lotteryList)}</View>
-          <View className="index-list-box-title">Double Color</View>
-          <View>{getBoxEle(doubleColorList)}</View>
-        </View>
-      </ScrollView>
+      <IndexContext.Provider value={{ remove }}>
+        <ScrollView scrollY enableBackToTop className="index-scroll-content">
+          {BtnBox}
+          <View className="index-list-box">
+            <View className="index-list-box-title">Lottery</View>
+            <LotteryList data={lotteryList} />
+            <View className="index-list-box-title">Double Color</View>
+            <LotteryList data={doubleColorList} />
+          </View>
+        </ScrollView>
+      </IndexContext.Provider>
     </SafeAreaView>
   );
 };
