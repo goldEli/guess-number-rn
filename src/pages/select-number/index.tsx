@@ -24,11 +24,19 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
   const { randomNumbers } = useRandomNumbers(ticketType);
   const [inputVal, setInputVal] = useState(randomNumbers.join(","));
   const randomNumbersStr = randomNumbers.join(",");
-  const [nextLotteryDrawNum, setNextLotteryDrawNum] = useState(
-    ticketType === "doubleColor"
-      ? officialDoubleColorList.nextLotteryDrawNum
-      : officialLotteryList.nextLotteryDrawNum
-  );
+  const [nextLotteryDrawNum, setNextLotteryDrawNum] = useState("");
+
+  useEffect(() => {
+    setNextLotteryDrawNum(
+      ticketType === "doubleColor"
+        ? officialDoubleColorList.nextLotteryDrawNum
+        : officialLotteryList.nextLotteryDrawNum
+    );
+  }, [
+    ticketType,
+    officialDoubleColorList.nextLotteryDrawNum,
+    officialLotteryList.nextLotteryDrawNum
+  ]);
 
   useEffect(() => {
     setInputVal(randomNumbersStr);

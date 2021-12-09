@@ -1,7 +1,20 @@
 .index {
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
   height: 100%;
+  &-scroll-content {
+    flex: 1;
+    height: 600px;
+  }
+  &-btn-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  &-btn-box-item {
+    width: 200px;
+  }
   &-list-box {
     padding: 20px;
   }

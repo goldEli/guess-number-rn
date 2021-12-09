@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Button, ScrollView, Input } from "@tarojs/components";
+import { View, Button, ScrollView } from "@tarojs/components";
 import { useStorage } from "taro-hooks";
 
 import Taro from "@tarojs/taro";
@@ -32,6 +32,7 @@ const Index = () => {
   const doubleColorList = myNumberList.filter(
     item => item.type === "doubleColor"
   );
+  const info = Taro.getSystemInfoSync();
 
   const getBoxEle = function(data: IListItem[]) {
     const obj = new Map<string, IListItem[][]>();
@@ -115,10 +116,11 @@ const Index = () => {
     });
   };
   return (
-    <ScrollView>
-      <SafeAreaView className="index">
+    <SafeAreaView className="index">
+      <ScrollView scrollY enableBackToTop className="index-scroll-content">
         <View className="index-btn-box">
           <Button
+            className="index-btn-box-item"
             onClick={() => {
               remove("123123");
             }}
@@ -126,6 +128,7 @@ const Index = () => {
             refresh
           </Button>
           <Button
+            className="index-btn-box-item"
             onClick={() => {
               Taro.navigateTo({
                 url: "/pages/select-number/index"
@@ -136,6 +139,7 @@ const Index = () => {
             select
           </Button>
           <Button
+            className="index-btn-box-item"
             type="warn"
             onClick={() => {
               Taro.navigateTo({
@@ -154,8 +158,8 @@ const Index = () => {
           <View className="index-list-box-title">Double Color</View>
           <View>{getBoxEle(doubleColorList)}</View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
