@@ -3,13 +3,14 @@ import { Button, Input, View, Picker } from "@tarojs/components";
 
 import { useStorage } from "taro-hooks";
 
-import { SafeAreaView, StatusBar } from "@components";
+import { SafeAreaView } from "@components";
 import { useOfficialDoubleColorList, useOfficialLotteryList } from "@src/api";
 import useRandomNumbers from "../index/useRandomNumbers";
 import { TTicketType } from "@src/type";
 import { getRandomId } from "@src/utils";
 import Taro from "@tarojs/taro";
 import "./index.scss";
+import useRouterParamByKey from "@src/hooks/useRouterParamByKey";
 
 interface ISelectNumberProps {}
 const PREFIX = "key";
@@ -19,8 +20,12 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
   const [_, { set }] = useStorage();
   const officialLotteryList = useOfficialLotteryList();
   const officialDoubleColorList = useOfficialDoubleColorList();
+  const routerLotteryNums = useRouterParamByKey("lotteryNums");
+  const routerLotteryType = useRouterParamByKey<TTicketType>("type");
 
-  const [ticketType, setTicketType] = useState<TTicketType>("lottery");
+  const [ticketType, setTicketType] = useState<TTicketType>(
+    routerLotteryType ?? "lottery"
+  );
   const { randomNumbers } = useRandomNumbers(ticketType);
   const [inputVal, setInputVal] = useState(randomNumbers.join(","));
   const randomNumbersStr = randomNumbers.join(",");
@@ -39,8 +44,12 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
   ]);
 
   useEffect(() => {
+    if (routerLotteryNums) {
+      setInputVal(routerLotteryNums);
+      return;
+    }
     setInputVal(randomNumbersStr);
-  }, [randomNumbersStr]);
+  }, [randomNumbersStr, routerLotteryNums]);
 
   return (
     <SafeAreaView className="select-number">

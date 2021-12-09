@@ -19,6 +19,7 @@ export interface IListItem {
 }
 export const IndexContext = createContext<{
   remove?: removeAction;
+  refreshStorage?: () => void
 }>({});
 const Index = () => {
   const [storageInfo, { remove }] = useStorage();
@@ -34,14 +35,13 @@ const Index = () => {
     item => item.type === "doubleColor"
   );
 
+  const refreshStorage = () => {
+    remove("123123");
+  };
+
   const BtnBox = (
     <View className="index-btn-box">
-      <Button
-        className="index-btn-box-item"
-        onClick={() => {
-          remove("123123");
-        }}
-      >
+      <Button className="index-btn-box-item" onClick={refreshStorage}>
         refresh
       </Button>
       <Button
@@ -71,7 +71,7 @@ const Index = () => {
 
   return (
     <SafeAreaView className="index">
-      <IndexContext.Provider value={{ remove }}>
+      <IndexContext.Provider value={{ remove, refreshStorage }}>
         <ScrollView scrollY enableBackToTop className="index-scroll-content">
           {BtnBox}
           <View className="index-list-box">

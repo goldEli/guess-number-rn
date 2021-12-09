@@ -14,26 +14,31 @@ interface IListProps {
 const Lottery: React.FC<IListProps> = props => {
   const { data, lotteryDrawResult } = props;
   const { remove } = useContext(IndexContext);
+  const onClick = (item: IListItem) => {
+    Taro.showModal({
+      title: "提示",
+      content: `是否要删除，第${item.num}, ${item.list.join(",")}`,
+      confirmText: "DELETE",
+      cancelText: "COPY",
+      success: function(res) {
+        if (res.confirm) {
+          !!remove && remove(item.id);
+        } else if (res.cancel) {
+          Taro.navigateTo({
+            url: `"/pages/select-number/index"?type=${
+              item.type
+            }&lotteryNums=${item.list.join(",")}`
+          });
+        }
+      }
+    });
+  };
   return (
     <View>
       {data?.map(item => {
         return (
           <View key={item.id}>
-            <View
-              className="index-ball-box"
-              onClick={() => {
-                Taro.showModal({
-                  title: "提示",
-                  content: `是否要删除，第${item.num}, ${item.list.join(" ")}`,
-                  success: function(res) {
-                    if (res.confirm) {
-                      !!remove && remove(item.id);
-                    } else if (res.cancel) {
-                    }
-                  }
-                });
-              }}
-            >
+            <View className="index-ball-box" onClick={() => onClick(item)}>
               {item?.list?.map((i, idx) => {
                 const type = item.type;
                 const lotteryDrawResultArr = lotteryDrawResult
