@@ -5,13 +5,12 @@
  * @Last Modified by: qiuz
  */
 
-import { NUMBER_RANGE } from '@src/pages/config';
+import { NUMBER_RANGE } from "@src/pages/config";
 
-export * from './across-api';
-export * from './is-type';
-export * from './global-data';
-export * from './common';
-
+export * from "./across-api";
+export * from "./is-type";
+export * from "./global-data";
+export * from "./common";
 
 export const getRandomNumbers = () => {
   const blueBalls = getBallNumbers(5, NUMBER_RANGE[0]);
@@ -42,7 +41,6 @@ export const checkWinNum = (
   myNums: number[],
   index: number
 ): boolean => {
-  
   const len = result?.length;
   if (len != 7) {
     return false;
@@ -113,4 +111,3 @@ export function classnames(
   }
   return str;
 }
-

@@ -1,6 +1,6 @@
 import { NUMBER_RANGE } from "./config";
 
-export const getRandomNumbers = () => {
+export const getRandomNumbers = (): number[] => {
   const blueBalls = getBallNumbers(5, NUMBER_RANGE[0]);
 
   const yellowBalls = getBallNumbers(2, NUMBER_RANGE[1]);
@@ -44,7 +44,7 @@ function getBallNumbers(
   len: number,
   range: [number, number],
   selected: number[] = []
-) {
+): number[] {
   if (selected.length === len) {
     return selected.sort((a, b) => a - b);
   }

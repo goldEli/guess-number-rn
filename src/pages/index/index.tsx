@@ -22,7 +22,6 @@ const Index = () => {
   const [storageInfo, { remove }] = useStorage();
   const officialLotteryList = useOfficialLotteryList();
   const officialDoubleColorList = useOfficialDoubleColorList();
-
   const myNumberList = Object.entries(storageInfo.storage)
     .filter(([key, value]) => key.startsWith(PREFIX))
     .map(([_, data]) => {
@@ -55,8 +54,8 @@ const Index = () => {
         const current = data?.find(i => i.lotteryDrawNum === num);
 
         return (
-          <View>
-            <View key={key}>
+          <View key={key}>
+            <View>
               <View className="index-ball-box-title">
                 <View>{key}</View>
                 <View>{current?.lotteryDrawTime}</View>

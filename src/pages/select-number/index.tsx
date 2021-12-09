@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input, View, Picker } from "@tarojs/components";
 
 import { useStorage } from "taro-hooks";
@@ -9,7 +9,7 @@ import useRandomNumbers from "../index/useRandomNumbers";
 import { TTicketType } from "@src/type";
 import { getRandomId } from "@src/utils";
 import Taro from "@tarojs/taro";
-import "./index.scss"
+import "./index.scss";
 
 interface ISelectNumberProps {}
 const PREFIX = "key";
@@ -21,16 +21,32 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
   const officialDoubleColorList = useOfficialDoubleColorList();
 
   const [ticketType, setTicketType] = useState<TTicketType>("lottery");
-  const { randomNumbers, setRandomNumbers } = useRandomNumbers(ticketType);
-
-  const nextLotteryDrawNum =
+  const { randomNumbers } = useRandomNumbers(ticketType);
+  const [inputVal, setInputVal] = useState(randomNumbers.join(","));
+  const randomNumbersStr = randomNumbers.join(",");
+  const [nextLotteryDrawNum, setNextLotteryDrawNum] = useState(
     ticketType === "doubleColor"
       ? officialDoubleColorList.nextLotteryDrawNum
-      : officialLotteryList.nextLotteryDrawNum;
+      : officialLotteryList.nextLotteryDrawNum
+  );
+
+  useEffect(() => {
+    setInputVal(randomNumbersStr);
+  }, [randomNumbersStr]);
+
   return (
     <SafeAreaView className="select-number">
       <View className="select-number-header">
-        <View className="select-number-header-label">{nextLotteryDrawNum}</View>
+        <View className="select-number-header-label">
+          <Input
+            name="nextLotteryDrawNum"
+            style={{ fontSize: 24 }}
+            onInput={e => {
+              setNextLotteryDrawNum(e.detail.value);
+            }}
+            value={nextLotteryDrawNum}
+          />
+        </View>
         <Picker
           mode="selector"
           range={range}
@@ -48,20 +64,18 @@ const SelectNumber: React.FC<ISelectNumberProps> = props => {
           name="123"
           style={{ fontSize: 36 }}
           onInput={e => {
-            // console.log(e);
-            const value = (e.detail.value + "")?.split(" ");
-            setRandomNumbers(value);
+            setInputVal(e.detail.value);
           }}
-          value={randomNumbers.join(" ")}
+          value={inputVal}
         />
       </View>
       <View className="select-number-button-box">
         <Button
-          style={{width: 300}}
+          style={{ width: 300 }}
           onClick={() => {
             const key = `${PREFIX}-${getRandomId()}`;
             set(key, {
-              list: randomNumbers,
+              list: inputVal.split(",").map(s => parseInt(s)),
               num: nextLotteryDrawNum,
               type: ticketType,
               id: key
